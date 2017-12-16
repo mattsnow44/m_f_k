@@ -6,6 +6,7 @@ class Api::CelebritiesController < ApplicationController
 
   def show 
     @celebrity = Celebrity.find(params[:id])
+    
   end
 
   private

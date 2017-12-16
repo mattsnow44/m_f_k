@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header, Table, Image, Segment, Dimmer, Loader, Container, Button} from 'semantic-ui-react'
 import axios from 'axios'
+import ViewCelebrity from './ViewCelebrity'
 
 
 class Stats extends React.Component{
@@ -56,7 +57,11 @@ class Stats extends React.Component{
                 return(
                   <Table.Row key={celebrity.celebrity.id}>
                     <Table.Cell><Image src={celebrity.celebrity.image} size='small' /></Table.Cell>
-                    <Table.Cell>{celebrity.celebrity.name}</Table.Cell>
+                    <Table.Cell>
+                      {celebrity.celebrity.name}
+                      <br />
+                      <ViewCelebrity id={celebrity.celebrity.id} />
+                    </Table.Cell>
                     <Table.Cell>{celebrity.count}</Table.Cell>
                   </Table.Row>
                 )

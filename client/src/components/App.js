@@ -5,7 +5,6 @@ import Login from './Login';
 import Register from './Register';
 import Flash from './Flash';
 import Home from './Home';
-import DnDHome from './draganddrop/DnDHome'
 // import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
@@ -25,7 +24,6 @@ class App extends Component {
             <Route exact path="/stats" component={Stats} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
-            <AuthRoute exact path='/draganddrop' component={DnDHome} />
             <Route component={NoMatch} />
           </Switch>
         </FetchUser>
