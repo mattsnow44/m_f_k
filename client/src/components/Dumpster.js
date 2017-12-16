@@ -16,16 +16,22 @@ class Dumpster extends React.Component {
         <div style={{
           height: '12rem',
           width: '12rem',
-          padding: '2rem',
+          // padding: '2rem',
           // backgroundColor: 'black',
           backgroundImage: `url(${celebrity.image}`,
           textAlign: 'center',
           color: 'white',
           margin: '2em',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-end'
         }}>
-          <p>{title}</p>
-          <p>{celebrity.name}</p>
-          {/* <img src={celebrity.image} style={styles.image}/> */}
+        <div style={styles.title}>
+          <span>{title}</span>
+          {': '}
+          <span>{celebrity.name}</span>
+        </div>
         </div>
       )
     } else {
@@ -48,9 +54,9 @@ class Dumpster extends React.Component {
 }
 
 const styles = {
-  image: {
-    height: '100%',
-    width: '100%'
+  title: {
+    width: '100%',
+    backgroundColor: '#000000AA'
   }
 }
 

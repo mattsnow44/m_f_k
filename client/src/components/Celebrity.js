@@ -9,11 +9,23 @@ class Celebrity extends React.Component {
       connectDragSource } = this.props
     // console.log(this.props)
     return connectDragSource(
-      <div style={styles.draggableContainer} >
-        <div style={styles.title}>
-          <p>{celebrity.name}</p>
-        </div>
-          <img src={celebrity.image} style={styles.image} />
+      <div style={{
+        height: '12rem',
+        width: '12rem',
+        // padding: '2rem',
+        // backgroundColor: 'black',
+        backgroundImage: `url(${celebrity.image}`,
+        textAlign: 'center',
+        color: 'white',
+        margin: '2em',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+      }} >
+      <div style={styles.title}>
+        <p>{celebrity.name}</p>
+      </div>
       </div>
     )
   }
@@ -30,8 +42,8 @@ const styles = {
     color: 'white',
   },
   title: {
-    display: 'flex',
-    flex: 1
+    width: '100%',
+    backgroundColor: '#000000AA'
   },
   image: {
     height: '100%',
