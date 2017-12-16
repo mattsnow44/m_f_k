@@ -57,9 +57,9 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <Header as='h1' textAlign='center'>Marry, Fuck, Kill</Header>
       <div style={styles.homeContainer}>
         <div>
-          <Header as='h1' textAlign='center'>Home Component</Header>
             {this.state.celebrities.map( celebrity => {
               return(
                 <Celebrity key={celebrity.id} celebrity={celebrity} />
