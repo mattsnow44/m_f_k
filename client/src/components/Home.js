@@ -28,7 +28,11 @@ class Home extends Component {
   handleSubmit = () => {
     const { toMarry, toFuck, toKill } = this.state
 
-    let results = {marry_id: toMarry.id, fuck_id: toFuck.id, kill_id: toKill.id }
+    let results = {
+      marry_id: toMarry.id,
+      fuck_id: toFuck.id,
+      kill_id: toKill.id
+    }
     axios.post('/api/results', results)
     .then(res => {
       console.log(res)
@@ -53,16 +57,17 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Container>
+      <div style={styles.homeContainer}>
+        <div>
           <Header as='h1' textAlign='center'>Home Component</Header>
             {this.state.celebrities.map( celebrity => {
               return(
                 <Celebrity key={celebrity.id} celebrity={celebrity} />
               )
             })}
-        </Container>
-        <Divider clearing />
-        <Container>
+        </div>
+        {/* <Divider clearing /> */}
+        <div>
           <Dumpster
             type='toMarry'
             onDrop={this.handleDrop}
@@ -81,10 +86,20 @@ class Home extends Component {
             celebrity={this.state.toKill}
             title='Kill'
           />
-        </Container>
-        <Button onClick={() => this.handleSubmit()}>Submit</Button>
+          <Button onClick={() => this.handleSubmit()}>Submit</Button>
+        </div>
       </div>
+    </div>
     );
+  }
+}
+
+const styles = {
+  homeContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '80%',
+    justifyContent: 'space-around'
   }
 }
 

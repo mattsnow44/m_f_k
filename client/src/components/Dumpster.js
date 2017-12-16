@@ -14,25 +14,29 @@ class Dumpster extends React.Component {
     if (!!celebrity.id) {
       return connectDropTarget(
         <div style={{
-          height: '8rem',
-          width: '8rem',
+          height: '12rem',
+          width: '12rem',
           padding: '2rem',
-          backgroundColor: 'black',
+          // backgroundColor: 'black',
+          backgroundImage: `url(${celebrity.image}`,
           textAlign: 'center',
-          color: 'white'
+          color: 'white',
+          margin: '2em',
         }}>
           <p>{title}</p>
           <p>{celebrity.name}</p>
+          {/* <img src={celebrity.image} style={styles.image}/> */}
         </div>
       )
     } else {
       return connectDropTarget(
         <div style={{
-          height: '8rem',
-          width: '8rem',
+          height: '12rem',
+          width: '12rem',
           padding: '2rem',
           border: '1px solid black',
           textAlign: 'center',
+          margin: '2em',
         }}>
         <p>{title}</p>
       </div>
@@ -41,6 +45,13 @@ class Dumpster extends React.Component {
     }
   }
 
+}
+
+const styles = {
+  image: {
+    height: '100%',
+    width: '100%'
+  }
 }
 
 const TargetFunction = {
