@@ -13,5 +13,5 @@ class Api::CelebritiesController < ApplicationController
     @celebrity = Celebrity.find(params[:id])
   end
 
-  
+
 end

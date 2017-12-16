@@ -26,7 +26,16 @@ class Home extends Component {
   }
 
   handleSubmit = () => {
-    debugger
+    const { toMarry, toFuck, toKill } = this.state
+
+    let results = {marry_id: toMarry.id, fuck_id: toFuck.id, kill_id: toKill.id }
+    axios.post('/api/results', results)
+    .then(res => {
+      console.log(res)
+      this.setState({ toMarry: {}, toFuck: {}, toKill: {} })
+      this.fetchCelebrities()
+    })
+    .catch(err => {console.log(err)})
   }
 
   fetchCelebrities = () => {
