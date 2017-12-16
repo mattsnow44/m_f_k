@@ -1,6 +1,7 @@
 class Api::ResultsController < ApplicationController
-  def index 
-
+  def show 
+    @results = Result.rank(params[:id])
+    render json: @results
   end 
 
   def create 
