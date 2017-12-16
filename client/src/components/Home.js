@@ -1,44 +1,82 @@
 import React, { Component } from 'react';
 import {
   Header,
-  Card,
   Container,
-  Image
+  Divider,
+  Button
 } from 'semantic-ui-react';
 import axios from 'axios';
-import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc'
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
+import Celebrity from './Celebrity'
+import Dumpster from './Dumpster'
+
+
 
 class Home extends Component {
-  state = {celebrities: []}
+  state = {
+    celebrities: [],
+    toMarry: {},
+    toFuck: {},
+    toKill: {},
+  }
 
   componentDidMount() {
+    this.fetchCelebrities()
+  }
+
+  handleSubmit = () => {
+    debugger
+  }
+
+  fetchCelebrities = () => {
     axios.get('/api/celebrities')
     .then(res => {
       this.setState({celebrities: res.data})
     })
   }
 
+  handleDrop = (itemType, props, monitor) => {
+    console.log(props.type, monitor.internalMonitor.registry.pinnedSource.props.celebrity.name)
+    this.setState({[props.type]: monitor.internalMonitor.registry.pinnedSource.props.celebrity})
+  }
+
   render() {
     return (
-      <Container>
-        <Header as='h1' textAlign='center'>Home Component</Header>
-        <Card.Group itemsPerRow={3}>
-          {this.state.celebrities.map( celebrity => {
-            return(
-              <Card>
-                <Image src={celebrity.image}/>
-                <Card.Content>
-                  <Card.Header>
-                    {celebrity.name}
-                  </Card.Header>
-                </Card.Content>
-              </Card>
-            )
-          })}
-        </Card.Group>
-      </Container>
+      <div>
+        <Container>
+          <Header as='h1' textAlign='center'>Home Component</Header>
+            {this.state.celebrities.map( celebrity => {
+              return(
+                <Celebrity key={celebrity.id} celebrity={celebrity} />
+              )
+            })}
+        </Container>
+        <Divider clearing />
+        <Container>
+          <Dumpster
+            type='toMarry'
+            onDrop={this.handleDrop}
+            celebrity={this.state.toMarry}
+            title='Marry'
+          />
+          <Dumpster
+            type='toFuck'
+            onDrop={this.handleDrop}
+            celebrity={this.state.toFuck}
+            title='Fuck'
+          />
+          <Dumpster
+            type='toKill'
+            onDrop={this.handleDrop}
+            celebrity={this.state.toKill}
+            title='Kill'
+          />
+        </Container>
+        <Button onClick={() => this.handleSubmit()}>Submit</Button>
+      </div>
     );
   }
 }
 
-export default Home;
+export default DragDropContext(HTML5Backend)(Home)
