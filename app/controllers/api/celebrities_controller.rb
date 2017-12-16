@@ -3,4 +3,14 @@ class Api::CelebritiesController < ApplicationController
     celebrities = Celebrity.all.sample(3)
     render json: celebrities
   end
+
+  def show 
+    
+
+  private
+  def get_celebrity
+    @celebrity = Celebrity.find(params[:id])
+  end
+
+  
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215053002) do
+ActiveRecord::Schema.define(version: 20171216180126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20171215053002) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.bigint "marry_id"
+    t.bigint "fuck_id"
+    t.bigint "kill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fuck_id"], name: "index_results_on_fuck_id"
+    t.index ["kill_id"], name: "index_results_on_kill_id"
+    t.index ["marry_id"], name: "index_results_on_marry_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,4 +63,7 @@ ActiveRecord::Schema.define(version: 20171215053002) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "results", "celebrities", column: "fuck_id"
+  add_foreign_key "results", "celebrities", column: "kill_id"
+  add_foreign_key "results", "celebrities", column: "marry_id"
 end
